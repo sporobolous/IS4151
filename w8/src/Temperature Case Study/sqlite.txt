@@ -1,0 +1,14 @@
+sudo apt-get install sqlite3
+sqlite3 temperature.db
+
+BEGIN;
+CREATE TABLE `temperature` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `devicename` CHARACTER(5) NOT NULL, `temp` INTEGER NOT NULL, `timestamp` DATETIME NOT NULL, `tocloud` BOOLEAN DEFAULT 0 NOT NULL);
+COMMIT;
+
+BEGIN;
+INSERT INTO temperature (`devicename`, `temp`, `timestamp`) VALUES('test', 29, datetime('now','localtime'));
+INSERT INTO temperature (`devicename`, `temp`, `timestamp`) VALUES('test', 30, datetime('now','localtime'));
+INSERT INTO temperature (`devicename`, `temp`, `timestamp`) VALUES('test', 31, datetime('now','localtime'));
+COMMIT;
+
+.quit

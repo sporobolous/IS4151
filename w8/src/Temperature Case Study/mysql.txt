@@ -1,0 +1,7 @@
+CREATE TABLE `temperature` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `devicename` char(5) NOT NULL,
+  `temp` int(11) NOT NULL,
+  `timestamp` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=106 DEFAULT CHARSET=utf8;
