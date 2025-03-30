@@ -10,8 +10,9 @@ def index():
 
 	if request.method == 'POST':
 	
-		return 'Hello POST!'
-	
+		return 'Hello POST!' 
+        # curl -X POST http://localhost:5000/
 	else:
 	
 		return 'Hello GET!'
+        # curl http://localhost:5000

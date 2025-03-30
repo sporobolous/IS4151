@@ -16,8 +16,8 @@ def index():
 	if request.method == 'GET':
 				
 		strHtml = strHtml + '<form method="post" action="/">'
-		strHtml = strHtml + '<label for="email">Email</label> <input type="text" id="email" name="email" /><br/>'
-		strHtml = strHtml + '<label for="password">Password</label> <input type="password" id="password" name="password" /><br/>'
+		strHtml = strHtml + '<label for="email">Email</label> <input type="text" id="email" name="email" required /><br/>'
+		strHtml = strHtml + '<label for="password">Password</label> <input type="password" id="password" name="password" required/><br/>'
 		strHtml = strHtml + '<input type="reset" /> <input type="submit" />'
 		strHtml = strHtml + '</form>'	
 		
