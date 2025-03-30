@@ -1,0 +1,117 @@
+===================================================
+* microbit device name and ble address *
+
+BBC micro:bit [vavet]
+E9:01:B2:1A:C5:4E
+
+BBC micro:bit [tipov]
+C8:06:B1:B4:66:53
+
+BBC micro:bit [popap]
+DF:60:7F:9B:61:F6
+
+BBC micro:bit [titug]
+CE:21:F0:50:0D:80
+
+===================================================
+
+* Installation and Setup *
+
+python3 --version
+# Python 3.7.3
+
+python3 -m pip --version
+# pip 18.1 from /usr/lib/python3/dist-packages/pip (python 3.7)
+
+# install bluetooth library
+sudo apt-get update
+sudo apt-get install bluetooth bluez libbluetooth-dev
+sudo apt-get install libglib2.0-dev
+sudo apt-get install libboost-python-dev
+sudo apt-get install libboost-thread-dev
+sudo apt-get install gcc-arm-linux-gnueabihf
+sudo apt-get install g++-arm-linux-gnueabihf
+
+sudo python3 -m pip install pybluez
+# Successfully installed pybluez-0.23
+
+# Raspberry Pi 4
+sudo apt install python3-bluetooth
+
+sudo python3 -m pip install gattlib
+# Successfully installed gattlib-0.20201113
+
+===================================================
+
+SFT
+
+sftp pi@raspberrypi.local
+<enter password should be raspberry>
+
+cd /home/pi/Documents
+
+lcd "<windows path to be quoted due to spaces>"
+
+put <file name>
+
+quit
+
+===================================================
+
+* bluetoothctl *
+
+sudo bluetoothctl --version
+bluetoothctl: 5.50
+
+sudo bluetoothctl
+# get a list of connected Bluetooth controllers
+list
+scan on
+scan off
+
+# not required as we disable pairing
+pair E9:01:B2:1A:C5:4E
+
+# can connect directly
+connect E9:01:B2:1A:C5:4E
+info
+disconnect
+quit
+
+===================================================
+
+* gatttool *
+
+* temperature service *
+
+sudo gatttool -I -t random -b E9:01:B2:1A:C5:4E
+connect
+primary e95d6100-251d-470a-a062-fa1922dfa9a8
+char-desc 0x0025 0xffff
+char-read-hnd 0x0027
+char-write-req 0x0028 0100
+char-write-req 0x0028 0000
+
+disconnect
+quit
+
+* uart service *
+
+sudo gatttool -I -t random -b E9:01:B2:1A:C5:4E
+connect
+primary 6e400001-b5a3-f393-e0a9-e50e24dcca9e
+char-desc 0x0025 0xffff
+# Receive
+char-read-hnd 0x0027
+# Enable receive notification
+char-write-req 0x0028 0200
+# Send
+char-write-req 0x002a 4142430D0A
+char-write-req 0x002a <STRING><NEWLINE_CRLF>
+The hex ascii code for CRLF is 0D0A
+The above example will send "ABC" terminated by a newline
+
+disconnect
+quit
+
+===================================================
