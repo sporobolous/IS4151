@@ -1,0 +1,42 @@
+swagger: "2.0"
+info:
+  description: IS4151/IS5451
+  version: "1.0.0"
+  title: DHT11 Sensor REST web service
+consumes:
+  - "application/json"
+produces:
+  - "application/json"
+
+basePath: "/api"
+
+# Paths supported by the server application
+
+consumes:
+  - application/json
+
+produces:
+  - application/json
+
+basePath: /api
+
+paths:
+  /sensor:    
+    put:
+      operationId: "sensor.create"
+      tags:
+        - Create Sensor Value
+      summary: Create Sensor Value
+      description: Create Sensor Value
+      parameters:
+        - name: temperature        
+          in: query
+          type: number
+          required: True
+      responses:
+        200:
+          description: Successfully created sensor value record        
+          schema:
+            properties:
+              temperature:
+                type: number
