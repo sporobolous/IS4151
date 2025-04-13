@@ -17,7 +17,8 @@ def main():
         arg = sys.argv[1]
         print('Light to cluster: ' + arg)
         
-        base_uri = 'http://localhost:5000/'
+        base_uri = 'http://localhost:5050/'
+        # http://localhost:5050/api/ui/#/Global%20Light/globallight.read
         lightcluster_uri = base_uri + 'api/lightcluster'        
         req = requests.get(lightcluster_uri, params={'light': arg})
         cluster_label = str(req.text).replace('"', '')
@@ -36,7 +37,7 @@ def main():
         client_id = f'python-mqtt-{random.randint(0, 10000)}'
         username = 'emqx'
         password = 'public'        
-        client = mqtt.Client(client_id)
+        client = mqtt.Client()
         client.username_pw_set(username, password)
         client.connect(broker, port)
         client.publish(topic, smartlight)
