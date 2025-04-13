@@ -4,16 +4,15 @@ import mysql.connector
 
 mydb = mysql.connector.connect(
 	host='localhost',
-	user='root',
+	user='eve',
 	passwd='password',
-	database='people'
+	database='people2'
 )
 
 print(mydb)
 
 
-
-# CREATE TABLE `people`.`people` (`fname` VARCHAR(128) NOT NULL, `lname` VARCHAR(128) NULL, `timestamp` DATETIME NULL, PRIMARY KEY (`fname`));
+# CREATE TABLE `people2`.`people1` (`fname` VARCHAR(128) NOT NULL, `lname` VARCHAR(128) NULL, `timestamp` DATETIME NULL, PRIMARY KEY (`fname`));
 
 
 
