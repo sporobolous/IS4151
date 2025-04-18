@@ -1,0 +1,87 @@
+swagger: "2.0"
+info:
+  description: This is the swagger file that goes with our server code
+  version: "1.0.0"
+  title: Environment Sensor API
+
+consumes:
+  - "application/json"
+produces:
+  - "application/json"
+
+basePath: "/api"
+
+paths:
+  /environment:
+    get:
+      operationId: "environment.read"
+      tags:
+        - "Global Environment"
+      summary: "Get all environment sensor readings"
+      description: "Returns a list of temperature, humidity, and pressure readings"
+      responses:
+        200:
+          description: "Successful read operation"
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: number
+                temp:
+                  type: number
+                humidity:
+                  type: number
+                pressure:
+                  type: number
+                timestamp:
+                  type: string
+
+    put:
+      operationId: "environment.create"
+      tags:
+        - "Global Environment"
+      summary: "Create a new environment record"
+      description: "Insert a new temperature, humidity, and pressure reading"
+      parameters:
+        - name: environment
+          in: body
+          description: Environment record to create
+          required: true
+          schema:
+            type: object
+            properties:
+              temp:
+                type: number
+              humidity:
+                type: number
+              pressure:
+                type: number
+              timestamp:
+                type: string
+      responses:
+        200:
+          description: "Successfully created environment record"
+
+  /envcluster:
+    get:
+      operationId: "environment.cluster"
+      tags:
+        - "Environment Clustering"
+      summary: "Get environment cluster label"
+      description: "Returns a cluster label based on temperature and humidity"
+      parameters:
+        - name: temp
+          in: query
+          description: Temperature
+          required: true
+          type: number
+        - name: humidity
+          in: query
+          description: Humidity
+          required: true
+          type: number
+      responses:
+        200:
+          description: "Successful prediction"

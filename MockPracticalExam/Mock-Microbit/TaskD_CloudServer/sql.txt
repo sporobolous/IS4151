@@ -1,0 +1,12 @@
+source ~/myenv/bin/activate
+
+sqlite3 /Users/eve_lappy/Developer/IS4151/MockPracticalExam/Mock-Microbit/TaskD_CloudServer/temp.db
+
+CREATE TABLE temp (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    devicename TEXT NOT NULL,
+    temp INTEGER NOT NULL,
+    timestamp DATETIME NOT NULL,
+    tocloud BOOLEAN DEFAULT 0 NOT NULL
+);
+.exit

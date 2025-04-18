@@ -29,7 +29,7 @@ def waitResponse():
     return response
 
 
-
+## CHANGE HERE 
 def saveData(lights):
     
     conn = sqlite3.connect('light.db')
@@ -109,7 +109,11 @@ def rhub():
 def cloudrelay():
     
     conn = sqlite3.connect('light.db')
-    
+    ## RMB TO CHANGE THIS PART OIIII 
+    ## ipconfig getifaddr en0
+    ## THEN PASTE THE IP ADDRESS HERE 
+    ## IF FAIL TEST WITH THIS curl http://192.168.1.253:5050/api/globaltemp
+
     base_uri = 'http://169.254.53.99:5000/'
     globallight_uri = base_uri + 'api/globallight'
     headers = {'content-type': 'application/json'}

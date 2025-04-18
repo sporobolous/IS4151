@@ -1,0 +1,15 @@
+sqlite3 environment.db
+
+
+CREATE TABLE environment (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    temp REAL,
+    humidity REAL,
+    pressure REAL,
+    timestamp TEXT,
+    tocloud INTEGER DEFAULT 0
+);
+
+.exit
+
+

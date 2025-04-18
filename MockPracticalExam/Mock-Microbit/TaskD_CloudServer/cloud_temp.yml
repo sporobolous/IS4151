@@ -1,0 +1,77 @@
+swagger: "2.0"
+info:
+  description: This is the swagger file that goes with our server code
+  version: "1.0.0"
+  title: Swagger REST Article
+consumes:
+  - "application/json"
+produces:
+  - "application/json"
+
+basePath: "/api"
+
+# Paths supported by the server application
+paths:
+  /globaltemp:
+    get:
+      operationId: "globaltemp.read"
+      tags:
+        - "Global Temp"
+      summary: "The temp data structure supported by the server application"
+      description: "Read the list of temp"
+      responses:
+        200:
+          description: "Successful read temp list operation"
+          schema:
+            type: "array"
+            items:
+              properties:
+                id:
+                  type: "number"
+                devicename:
+                  type: "string"
+                temp:
+                  type: "number"
+                timestamp:
+                  type: "string"
+    put:
+      operationId: "globaltemp.create"
+      tags:
+        - Global Temp
+      summary: Create a temp record in the database
+      description: Create a new temp in the database
+      parameters:
+        - name: globaltemp
+          in: body
+          description: temp record to create
+          required: True
+          schema:
+            type: object
+            properties:
+              devicename:
+                type: "string"
+              temp:
+                type: "number"
+              timestamp:
+                type: "string"
+      responses:
+        200:
+          description: Successfully created temp record in database
+
+  /tempcluster:
+    get:
+      operationId: "globaltemp.cluster"
+      tags:
+        - Get cluster label of temp
+      summary: "Get cluster label of temp"
+      description: "Get cluster label of temp"
+      parameters:
+        - name: temp
+          in: query
+          description: temp
+          required: true
+          type: number
+
+      responses:
+        200:
+          description: "Successful prediction"

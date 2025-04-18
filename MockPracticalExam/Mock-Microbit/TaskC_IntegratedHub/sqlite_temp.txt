@@ -1,0 +1,24 @@
+source ~/myenv/bin/activate
+
+sudo apt-get install sqlite3
+
+sqlite3 temp.db
+
+BEGIN;
+DROP TABLE IF EXISTS temp;
+
+CREATE TABLE `temp` (
+    `id` INTEGER PRIMARY KEY AUTOINCREMENT,
+    `devicename` CHARACTER(5) NOT NULL,
+    `temp` INTEGER NOT NULL,
+    `timestamp` DATETIME NOT NULL,
+    `tocloud` BOOLEAN DEFAULT 0 NOT NULL
+);
+
+.exit
+
+COMMIT;
+
+.exit
+
+python3 ihub_temperature.py 
